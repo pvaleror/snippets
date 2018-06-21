@@ -5,7 +5,7 @@ in main level and sub level corresponding whit local var
 
 how to run
 
-perl natural-sort-files-depp-folders.pl
+perl natural-sort-files-depp-folders.pl SUB_FOLDER
 
 =cut 
 
@@ -13,8 +13,13 @@ perl natural-sort-files-depp-folders.pl
 $exampleFolder = "examples\\$0";
 $exampleFolder =~ s/\.pl$//;
 
+#check sub folder as param as if exits
+if(!@ARGV[0] or !-d "$exampleFolder\\@ARGV[0]"){
+  print "Argument '@ARGV[0]' is not valid";
+  exit -1;
+}
 #set current env
-$subFolder = "TEST";
+$subFolder = @ARGV[0];
 
 #array to list all files on main and sub folders
 my @files = ();
